@@ -1,88 +1,77 @@
 import pandas as pd
-# Load the dataset (make sure the file name is correct)
-data = pd.read_csv(r"C:\Users\syedthasthigheer\Downloads\spambase.data", header=None)
-# Create feature names (57 features + 1 label)
-feature_names = [f'feature_{i}' for i in range(1, 58)]
-feature_names.append("label")
-
-# Apply column names
-data.columns = feature_names
-
-# Display first 5 rows
-print(data.head())
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, auc
+from sklearn.neighbors import KNeighborsClassifier
 
-# Features (all columns except 'label')
-X = data.drop(columns=['label'])
-y = data['label']
+# -------------------------------------------------------------
+# 1. LOAD DATASET  (CHANGE THE FILE NAME BELOW!)
+# -------------------------------------------------------------
+df = pd.read_csv(r"C:\Users\syedthasthigheer\OneDrive\Documents\my_gitfolder\spambase.data", header=None)
 
-# Split dataset into 80% train and 20% test 
+# 57 features + 1 label column
+column_names = [f"feature_{i}" for i in range(57)] + ["label"]
+df.columns = column_names
+
+X = df.drop("label", axis=1)
+y = df["label"]
+
+# -------------------------------------------------------------
+# 2. TRAIN–TEST SPLIT
+# -------------------------------------------------------------
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-# Check shapes
-print("X_train shape:", X_train.shape)
-print("X_test shape:", X_test.shape)
-print("y_train shape:", y_train.shape)
-print("y_test shape:", y_test.shape)
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+# -------------------------------------------------------------
+# 3. SCALE FEATURES
+# -------------------------------------------------------------
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
-# Train ONLY K-NN model
+# -------------------------------------------------------------
+# 4. TRAIN K-NN ONLY
+# -------------------------------------------------------------
 knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train, y_train)
+knn.fit(X_train_scaled, y_train)
+y_pred_knn = knn.predict(X_test_scaled)
 
-# Make predictions
-y_pred_knn = knn.predict(X_test)
+# Accuracy
+accuracy = accuracy_score(y_test, y_pred_knn)
+print("K-NN Accuracy:", accuracy)
 
-# Calculate accuracy
-knn_accuracy = accuracy_score(y_test, y_pred_knn)
-
-print("K-NN Accuracy:", knn_accuracy)
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-# Train KNN model
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train, y_train)
-
-# Predictions
-y_pred_knn = knn.predict(X_test)
-
-# Confusion matrix
+# -------------------------------------------------------------
+# 5. CONFUSION MATRIX
+# -------------------------------------------------------------
 cm = confusion_matrix(y_test, y_pred_knn)
 
-# Plot heatmap
-plt.figure(figsize=(5, 4))
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-plt.title("Confusion Matrix — K-NN")
+plt.figure(figsize=(5,4))
+sns.heatmap(cm, annot=True, cmap="Blues", fmt="d")
+plt.title("K-NN Confusion Matrix")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-plt.tight_layout()
 plt.show()
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import matplotlib.pyplot as plt
 
-# Train KNN model
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train, y_train)
+# -------------------------------------------------------------
+# 6. ROC CURVE
+# -------------------------------------------------------------
+y_prob_knn = knn.predict_proba(X_test_scaled)[:, 1]
+fpr, tpr, _ = roc_curve(y_test, y_prob_knn)
+roc_auc = auc(fpr, tpr)
 
-# Predictions
-y_pred_knn = knn.predict(X_test)
-
-# Confusion matrix
-cm = confusion_matrix(y_test, y_pred_knn)
-
-# Plot heatmap
-plt.figure(figsize=(5, 4))
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-plt.title("Confusion Matrix — K-NN")
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
-plt.tight_layout()
+plt.figure(figsize=(6,5))
+plt.plot(fpr, tpr, label=f"AUC = {roc_auc:.4f}")
+plt.plot([0,1], [0,1], linestyle="--")
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.title("ROC Curve — K-NN")
+plt.legend()
 plt.show()
+
+
+
+
+
