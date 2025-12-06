@@ -9,7 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 # -------------------------------------------------------------
 # 1. LOAD DATASET  (CHANGE THE FILE NAME BELOW!)
 # -------------------------------------------------------------
-df = pd.read_csv(r"C:\Users\syedthasthigheer\OneDrive\Documents\my_gitfolder\spambase.data", header=None)
+df = pd.read_csv(r"C:\Users\syedthasthigheer\OneDrive\Documents\my_gitfolder\ai-intern-training\spambase.data", header=None)
 
 # 57 features + 1 label column
 column_names = [f"feature_{i}" for i in range(57)] + ["label"]
