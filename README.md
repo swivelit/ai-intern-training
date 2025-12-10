@@ -9,7 +9,7 @@ Multiple classical ML algorithms are trained and compared to identify the best p
 
 Dataset used: **UCI Spambase Dataset**
 
-Download here:
+Download these files :
 
 - https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data
 - https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names
