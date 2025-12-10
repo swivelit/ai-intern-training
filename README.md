@@ -1,51 +1,66 @@
-# Email Spam Classifier (Classical ML)
+# Email Spam Classifier
 
-**Description:** Students build a binary classifier to detect spam emails using classical ML algorithms (Logistic Regression, SVM, k-NN, Naive Bayes). Uses the UCI Spambase dataset.
+## Project Overview
+Students build a binary classifier to detect spam emails using classical ML algorithms (Logistic Regression, SVM, k-NN, Gaussian Naive Bayes) on the **SpamBase** dataset (UCI ML Repository).
 
-## Project structure
-```
-spam_classifier_project/
-├─ spam_classifier_notebook.ipynb     # Exploratory notebook (data load, preprocessing, training & evaluation)
-├─ train.py                           # Script to run training & evaluation from command line
-├─ requirements.txt                   # Dependencies
-├─ README.md                          # This file
-├─ .gitignore
-├─ LICENSE
-└─ models/
-   └─ saved_model.joblib              # (optional) saved model after running
-```
+## What’s included
+- `train.py` — main script to load data, preprocess, train models, evaluate, and save metrics/plots.
+- `evaluate.py` — helper script to load saved model results and print/plot comparisons.
+- `utils.py` — utility functions (data loading, plotting).
+- `requirements.txt` — pip-installable dependencies.
+- `confusion_and_roc/` — output folder where trained models, confusion matrices and ROC curves will be saved (created at runtime).
+- `.gitignore` — recommended ignores.
 
-## How to run
-1. (Optional) Create & activate virtual environment (not included in zip as requested)
-2. Install dependencies:
+## How to use
+1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-3. Run notebook (Jupyter) or run the script:
-```bash
-python train.py
-```
-The script downloads the Spambase dataset from the UCI repo automatically, trains multiple classifiers, prints results, and saves plots to `outputs/`.
 
-## How to add this project to an existing GitHub repo and push to a new branch
-Assuming you have a local clone of the existing repository and want to add this project as a subfolder and push to a new branch named `feature/spam-classifier`:
-
+2. Run training (this will download the Spambase dataset from UCI if not present):
 ```bash
-# inside your local clone of your existing repo:
-git checkout -b feature/spam-classifier
-# copy the project folder into your repository root (or move it there)
-cp -r /path/to/spam_classifier_project ./  # or move files as needed
-git add spam_classifier_project
-git commit -m "Add spam classifier project"
-git push origin feature/spam-classifier
+python train.py --data-dir data --output-dir confusion_and_roc
 ```
 
-If your remote is not set or you need to add it:
-```bash
-git remote add origin <your-repo-url>
-git push -u origin feature/spam-classifier
-```
+3. Results:
+- Model metrics printed to console.
+- Confusion matrix PNGs and ROC curve PNG saved in `confusion_and_roc/`.
+- Pickled sklearn models saved in `confusion_and_roc/models/`.
+
+## Files explanation
+- `train.py`: Loads dataset, performs train/test split, standard scaling, trains 4 classifiers, computes accuracy, confusion matrix, ROC AUC and saves figures.
+- `evaluate.py`: Re-loads saved results and prints a summary.
+- `utils.py`: Data loading and plotting helpers.
 
 ## Notes
-- The notebook and script download the dataset from UCI (`https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data`).
-- This zip intentionally does not include a virtual environment or heavy binary files.
+- No virtual environment included.
+- No Jupyter notebook included (per request).
+- Dataset is **not** included due to size/licensing — the script downloads it automatically from the UCI repository.
+
+## How to add this project to an existing GitHub repo and create a sub-branch
+Assuming you already cloned your existing repo locally and it's at `~/my-repo`:
+
+```bash
+cd ~/my-repo
+# create a new sub-branch from an existing branch (e.g., `team3`)
+git fetch origin
+git checkout team3                 # switch to base branch (or any other base)
+git pull origin team3
+git checkout -b Ajith              # create and switch to new sub-branch 'Ajith'
+
+# Copy project files into your repo folder (or move them)
+cp -r /path/to/email_spam_classifier_project/* .
+
+git add .
+git commit -m "Add Email Spam Classifier project"
+git push origin Ajith              # push the new branch to remote
+```
+
+If you don't have the remote set up or want to add a remote:
+```bash
+git remote add origin <YOUR_REMOTE_URL>
+git push -u origin Ajith
+```
+
+## License
+This project template is provided for educational purposes.

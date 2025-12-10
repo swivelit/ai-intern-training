@@ -1,108 +1,86 @@
-#!/usr/bin/env python3
+"""Train multiple classical ML classifiers on the Spambase dataset.
 
-\"\"\"Train multiple classical ML classifiers on the UCI Spambase dataset and evaluate them.
-Saves evaluation plots to outputs/ and a best model to models/.
-\"\"\"
+Saves:
+- models as joblib files under output_dir/models/
+- confusion matrix images and ROC curves under output_dir/
+"""
+
 import os
+import argparse
+import joblib
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_curve, auc
-import joblib
-import seaborn as sns
-sns.set()
+from sklearn.metrics import accuracy_score, roc_auc_score
+from utils import load_spambase, prepare_data, plot_and_save_confusion, plot_and_save_roc
 
-DATA_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data"
-COLUMN_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names"
+def train_and_evaluate(X_train, X_test, y_train, y_test, scaler, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    models_dir = os.path.join(output_dir, 'models')
+    os.makedirs(models_dir, exist_ok=True)
 
-def download_dataset(url=DATA_URL):
-    print("Downloading dataset...")
-    df = pd.read_csv(url, header=None)
-    return df
+    classifiers = {
+        'LogisticRegression': LogisticRegression(max_iter=1000),
+        'SVM': SVC(probability=True),
+        'KNN': KNeighborsClassifier(n_neighbors=5),
+        'GaussianNB': GaussianNB()
+    }
 
-def prepare_data(df):
-    # Last column is label (1=spam, 0=non-spam)
-    X = df.iloc[:, :-1]
-    y = df.iloc[:, -1]
-    return X, y
-
-def evaluate_models(models, X_test, y_test, outputs_dir="outputs"):
-    os.makedirs(outputs_dir, exist_ok=True)
     results = {}
-    plt.figure(figsize=(8,6))
-    for name, model in models.items():
-        y_pred = model.predict(X_test)
+
+    for name, clf in classifiers.items():
+        print(f'== Training {name} ==')
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
-        results[name] = acc
-        print(f"--- {name} ---")
-        print("Accuracy:", acc)
-        print(classification_report(y_test, y_pred))
-        # Confusion matrix
-        cm = confusion_matrix(y_test, y_pred)
-        plt.figure(figsize=(5,4))
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-        plt.title(f"Confusion Matrix - {name}")
-        plt.xlabel("Predicted")
-        plt.ylabel("Actual")
-        plt.savefig(os.path.join(outputs_dir, f"confusion_{name}.png"))
-        plt.close()
-        # ROC (if model supports predict_proba or decision_function)
+        # For ROC AUC we need probability scores or decision function
         try:
-            if hasattr(model, "predict_proba"):
-                probs = model.predict_proba(X_test)[:,1]
-            else:
-                probs = model.decision_function(X_test)
-            fpr, tpr, _ = roc_curve(y_test, probs)
-            roc_auc = auc(fpr, tpr)
-            plt.plot(fpr, tpr, label=f"{name} (AUC={roc_auc:.3f})")
+            y_score = clf.predict_proba(X_test)[:, 1]
+        except Exception:
+            # fallback to decision function
+            try:
+                y_score = clf.decision_function(X_test)
+            except Exception:
+                y_score = y_pred  # not ideal
+        auc = None
+        try:
+            auc = roc_auc_score(y_test, y_score)
+        except Exception:
+            auc = float('nan')
+
+        print(f'{name} -- Accuracy: {acc:.4f} | ROC AUC: {auc:.4f}')
+
+        # save model
+        model_path = os.path.join(models_dir, f'{name}.joblib')
+        joblib.dump({'model': clf, 'scaler': scaler}, model_path)
+
+        # save confusion matrix plot
+        plot_and_save_confusion(name, y_test, y_pred, output_dir)
+        # save ROC plot
+        try:
+            plot_and_save_roc(name, y_test, y_score, output_dir)
         except Exception as e:
-            print(f"Could not compute ROC for {name}: {e}")
-    plt.plot([0,1],[0,1],'--', linewidth=0.5)
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title("ROC Curves")
-    plt.legend()
-    plt.savefig(os.path.join(outputs_dir, "roc_curves.png"))
-    plt.close()
-    return results
+            print('Could not plot ROC for', name, e)
+
+        results[name] = {'accuracy': acc, 'roc_auc': auc, 'model_path': model_path}
+
+    # Save results summary
+    import json
+    with open(os.path.join(output_dir, 'results_summary.json'), 'w') as f:
+        json.dump(results, f, indent=2)
+    print('Saved results summary.')
 
 def main():
-    df = download_dataset()
-    print("Data shape:", df.shape)
-    X, y = prepare_data(df)
-    # Train-test split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-    scaler = StandardScaler()
-    X_train_s = scaler.fit_transform(X_train)
-    X_test_s = scaler.transform(X_test)
-    # Models
-    models = {
-        "LogisticRegression": LogisticRegression(max_iter=1000),
-        "SVM": SVC(probability=True),
-        "KNN": KNeighborsClassifier(n_neighbors=5),
-        "GaussianNB": GaussianNB()
-    }
-    # Train
-    for name, model in models.items():
-        print(f"Training {name}...")
-        model.fit(X_train_s, y_train)
-    # Evaluate
-    results = evaluate_models(models, X_test_s, y_test)
-    print("Summary of accuracies:")
-    for k,v in results.items():
-        print(k, v)
-    # Save best model (by accuracy)
-    best_name = max(results, key=results.get)
-    os.makedirs("models", exist_ok=True)
-    joblib.dump(models[best_name], f"models/{best_name}.joblib")
-    joblib.dump(scaler, "models/scaler.joblib")
-    print(f"Saved best model: {best_name} to models/{best_name}.joblib")
+    parser = argparse.ArgumentParser(description='Train spam classifiers.')
+    parser.add_argument('--data-dir', default='data', help='Directory to store/load dataset')
+    parser.add_argument('--output-dir', default='confusion_and_roc', help='Directory to save outputs')
+    args = parser.parse_args()
+
+    X, y = load_spambase(args.data_dir)
+    X_train, X_test, y_train, y_test, scaler = prepare_data(X, y)
+    train_and_evaluate(X_train, X_test, y_train, y_test, scaler, args.output_dir)
 
 if __name__ == '__main__':
     main()

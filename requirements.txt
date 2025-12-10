@@ -2,7 +2,4 @@ numpy
 pandas
 scikit-learn
 matplotlib
-seaborn
 joblib
-jupyter
-nbformat
