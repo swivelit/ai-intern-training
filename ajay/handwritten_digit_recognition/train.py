@@ -1,6 +1,7 @@
 import tensorflow as tf
-from tensorflow.keras import layers, models
-from tensorflow.keras.datasets import mnist
+from keras import layers, models
+from keras.datasets import mnist
+
 
 # Load dataset
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -46,4 +47,4 @@ test_loss, test_acc = model.evaluate(x_test, y_test)
 print("Test Accuracy:", test_acc)
 
 # Save model
-model.save("mnist_cnn_model.h5")
+model.save("mnist_cnn_model.keras")
