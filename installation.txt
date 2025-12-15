@@ -1,9 +1,0 @@
-Clone the repository
-    git clone https://github.com/yourusername/email-spam-classifier.git
-    cd email-spam-classifier
-
-Install dependencies
-    pip install -r requirements.txt
-
-Run the project
-    python spam_classifier.py
