@@ -25,3 +25,11 @@ MNIST handwritten digit dataset.
 ## Author
 Ajay
 Model is saved using the modern Keras `.keras` format.
+## Visualization
+
+This project includes a `visualize.py` script to visualize intermediate
+CNN activation maps for MNIST images.
+
+### How to Run
+```bash
+python visualize.py
