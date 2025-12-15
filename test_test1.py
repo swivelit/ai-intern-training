@@ -1,0 +1,2 @@
+def ranfuntion():
+    print("anything")
