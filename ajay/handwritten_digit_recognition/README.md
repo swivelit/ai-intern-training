@@ -24,3 +24,4 @@ MNIST handwritten digit dataset.
 
 ## Author
 Ajay
+Model is saved using the modern Keras `.keras` format.
