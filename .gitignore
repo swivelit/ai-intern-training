@@ -205,8 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-
-.venvs/.DS_Store
-.vscode/
-catboost_info/
+.DS_Store
+__pycache__/
+*.pyc
+*.keras
+.ipynb_checkpoints/
+venv/
 
