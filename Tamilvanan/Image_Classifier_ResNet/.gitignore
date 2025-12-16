@@ -1,0 +1,19 @@
+# PyTorch / datasets
+data/
+**/data/
+
+# Trained models
+*.pth
+*.pt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env/
+
+# OS files
+Thumbs.db
+.DS_Store
