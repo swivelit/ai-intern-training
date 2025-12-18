@@ -1,0 +1,1 @@
+Place the Kaggle loan dataset CSV here and rename it as loan_data.csv
