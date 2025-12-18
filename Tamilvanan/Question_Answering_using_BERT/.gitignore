@@ -1,0 +1,60 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Virtual Environments
+# =========================
+venv/
+.env/
+.venv/
+env/
+
+# =========================
+# HuggingFace / ML Artifacts
+# =========================
+qa_model/
+checkpoint-*/
+runs/
+wandb/
+
+# =========================
+# Datasets & Cache
+# =========================
+data/
+datasets/
+.cache/
+huggingface/
+*.arrow
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Large Files
+# =========================
+*.pt
+*.bin
+*.ckpt
