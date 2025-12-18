@@ -7,6 +7,6 @@ developed by Team1 interns.
 - ajay/
   - ResNet CIFAR-10 Image Classifier
 - Anjana/
-  - CNN project
+  - text sentiment project
 - chandru/
   - Email spam classifier
