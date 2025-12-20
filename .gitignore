@@ -1,10 +1,11 @@
-# Datasets
-data/
-*.tar.gz
+# Virtual environments
+.venv/
+**/.venv/
+
+# Outputs
+outputs/
+**/outputs/
 
 # Python cache
 __pycache__/
-*.pyc
-
-# Virtual environment
-venv/
+**/__pycache__/
