@@ -1,2 +1,0 @@
-782/782 - loss: 0.39 - accuracy: 0.83
-GRU Accuracy: 0.8325

@@ -1,2 +1,0 @@
-LSTM Accuracy: 0.8614
-GRU Accuracy : 0.8325
