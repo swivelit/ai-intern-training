@@ -1,0 +1,13 @@
+Model: "model"
+_________________________________________________________________
+ Layer (type)                    Output Shape              Param #
+=================================================================
+ input_1 (InputLayer)            [(None, 128, 128, 3)]     0
+ resnet50 (Functional)           (None, 4, 4, 2048)        23,587,712
+ global_average_pooling2d        (None, 2048)              0
+ dense (Dense)                   (None, 128)               262,272
+ dense_1 (Dense)                 (None, 10)                1,290
+=================================================================
+Total params: ~23.8 million
+Trainable params: ~263K
+Non-trainable params: ~23.5M

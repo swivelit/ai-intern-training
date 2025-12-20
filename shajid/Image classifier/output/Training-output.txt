@@ -1,0 +1,11 @@
+Epoch 1/5
+782/782 ━━━━━━━━━━━━━━━━━━━━ 180s
+loss: 1.52 - accuracy: 0.80 - val_loss: 1.39 - val_accuracy: 0.80
+
+Epoch 2/5
+782/782 ━━━━━━━━━━━━━━━━━━━━ 170s
+loss: 1.28 - accuracy: 0.83 - val_loss: 1.30 - val_accuracy: 0.83
+
+Epoch 3/5
+782/782 ━━━━━━━━━━━━━━━━━━━━ 165s
+loss: 1.18 - accuracy: 0.88 - val_loss: 1.25 - val_accuracy: 0.85
