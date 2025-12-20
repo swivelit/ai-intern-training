@@ -1,0 +1,63 @@
+# FAST Image Classification using ResNet50 (CIFAR-10)
+
+## 📌 Project Overview
+This project implements **fast image classification** on the **CIFAR-10 dataset** using **Transfer Learning with ResNet50**.  
+The model leverages a **pretrained ImageNet ResNet50 backbone**, adds a **lightweight custom classification head**, and uses an **optimized tf.data pipeline** for faster training.
+
+The design goal is to achieve **good accuracy within 30–60 minutes on GPU** while keeping the model efficient.
+
+---
+
+## 🧠 Key Concepts Used
+- Convolutional Neural Networks (CNN)
+- Transfer Learning
+- Pretrained ResNet50 (ImageNet weights)
+- tf.data pipeline optimization
+- Early Stopping
+- Global Average Pooling
+
+---
+
+## 📂 Dataset
+**CIFAR-10 (Keras Built-in Dataset)**  
+- 60,000 color images (32×32)
+- 10 classes:
+  - Airplane, Automobile, Bird, Cat, Deer  
+  - Dog, Frog, Horse, Ship, Truck
+- Train: 50,000 images  
+- Test: 10,000 images
+
+---
+
+## ⚙️ Model Architecture
+- **Base Model:** ResNet50 (frozen weights)
+- **Input Size:** 128 × 128 × 3
+- **Custom Head:**
+  - GlobalAveragePooling2D
+  - Dense (128 units, ReLU)
+  - Dense (10 units, Softmax)
+
+---
+
+## 🚀 Training Strategy
+- Optimized `tf.data.Dataset` pipeline
+- Batch Size: **64**
+- Image Resize: **128 × 128**
+- Optimizer: **Adam (lr = 1e-4)**
+- Loss Function: **Categorical Crossentropy**
+- EarlyStopping on validation accuracy
+
+---
+
+## ⏱️ Expected Runtime
+| Hardware | Training Time |
+|--------|---------------|
+| GPU (T4 / RTX / Colab) | ~30–60 minutes |
+| CPU | Several hours (not recommended) |
+
+---
+
+## 📊 Output & Results
+- Training & validation accuracy curve
+- Training & validation loss curve
+- Final test accuracy printed after evaluation
