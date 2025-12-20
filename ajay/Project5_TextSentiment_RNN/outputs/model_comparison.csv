@@ -1,0 +1,3 @@
+model,test_accuracy,test_auc,train_time_sec,saved_path
+LSTM,0.5148000121116638,0.5156621932983398,166.41560125350952,outputs\lstm_model.keras
+GRU,0.8436800241470337,0.9152448773384094,289.8003718852997,outputs\gru_model.keras
