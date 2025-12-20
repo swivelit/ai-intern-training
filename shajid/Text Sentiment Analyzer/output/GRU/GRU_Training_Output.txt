@@ -1,6 +1,0 @@
-Epoch 1/3
-313/313 - loss: 0.45 - accuracy: 0.77 - val_accuracy: 0.85
-Epoch 2/3
-313/313 - loss: 0.25 - accuracy: 0.89 - val_accuracy: 0.87
-Epoch 3/3
-313/313 - loss: 0.16 - accuracy: 0.93 - val_accuracy: 0.83

@@ -1,2 +1,0 @@
-782/782 - loss: 0.34 - accuracy: 0.86
-LSTM Accuracy: 0.8613
