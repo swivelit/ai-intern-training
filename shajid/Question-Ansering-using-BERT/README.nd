@@ -1,0 +1,63 @@
+Question Answering using BERT (DistilBERT)
+
+This project implements a **Question Answering (QA) system** using **DistilBERT**, fine-tuned on the **SQuAD v1.1 dataset**.  
+The model predicts the **answer span** from a given context based on a question.
+
+DistilBERT is used to ensure the project runs efficiently on **CPU-only systems**.
+
+---
+
+Project Objectives
+
+- Fine-tune a BERT-based model for Question Answering
+- Use SQuAD v1.1 dataset
+- Evaluate the model on sample questions
+- Run Question Answering from the command line
+- Ensure the project works without GPU
+
+---
+
+Dataset
+
+    Dataset Name:** Stanford Question Answering Dataset (SQuAD v1.1)
+
+Official Dataset Link:**  
+    https://rajpurkar.github.io/SQuAD-explorer/
+
+The dataset contains:
+    - Context paragraphs
+    - Questions
+    - Exact answer spans (`answer_start`, `answer_text`)
+
+In this project, the dataset is loaded automatically using the Hugging Face `datasets` library.
+
+---
+
+Model Architecture
+
+- Base Model: DistilBERT (`distilbert-base-uncased`)
+- Task: Span-based Question Answering
+- Framework: Hugging Face Transformers (PyTorch)
+
+Install Required Libraries
+
+    python -m pip install transformers datasets accelerate torch
+
+Project Structure
+
+    question-answering-bert/
+    │
+    ├── question.py        # Training + inference script
+    ├── bert-qa-model/     # Saved model and tokenizer
+    └── README.md          # Documentation
+
+Model Training Process
+
+    Load SQuAD v1.1 dataset
+    Tokenize question–context pairs
+    Convert character-level answer spans to:
+        start_positions
+        end_positions
+    Fine-tune DistilBERT on a small subset
+    Save the trained model
+
