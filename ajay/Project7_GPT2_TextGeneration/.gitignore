@@ -1,0 +1,11 @@
+# Virtual environments
+.venv/
+**/.venv/
+
+# Outputs
+outputs/
+**/outputs/
+
+# Python cache
+__pycache__/
+**/__pycache__/
