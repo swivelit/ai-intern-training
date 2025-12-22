@@ -1,11 +1,6 @@
-# Virtual environments
-.venv/
-**/.venv/
-
-# Outputs
+.vscode/
+catboost_info/
 outputs/
-**/outputs/
-
-# Python cache
 __pycache__/
-**/__pycache__/
+.env
+.venv/
