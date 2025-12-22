@@ -1,0 +1,69 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# =========================
+# Virtual Environment
+# =========================
+venv/
+.env/
+.env.*
+
+# =========================
+# Jupyter / IPython
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Hugging Face / Transformers
+# =========================
+.cache/
+.cache/*
+**/.cache/
+
+# Trained models (VERY IMPORTANT)
+gpt2-finetuned/
+gpt2-finetuned/*
+checkpoints/
+checkpoints/*
+gpt2-ultra-low-ram/
+gpt2-ultra-low-ram/*
+logs/
+logs/*
+samples/
+samples/*
+samples
+samples_generation
+# =========================
+# Logs & Outputs
+# =========================
+logs/*.log
+logs/*.txt
+runs/
+outputs/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.bak
+*.swp
+
+# =========================
+# ZIP files
+# =========================
+*.zip
