@@ -1,12 +1,12 @@
 # AI Intern Training – Team1
 
-This repository contains machine learning and deep learning projects
-developed by Team1 interns.
+This repository contains **Machine Learning and Deep Learning projects**
+developed by **Team1 interns** as part of the AI Intern Training Program.
 
-## Projects
-- ajay/
-  - ResNet CIFAR-10 Image Classifier
-- Anjana/
-  - text sentiment project
-- chandru/
-  - Email spam classifier
+---
+
+## 📂 Repository Structure
+
+Each intern maintains their work inside a personal folder.
+Each project is self-contained with source code, data references, and documentation.
+
