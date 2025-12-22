@@ -1,0 +1,7 @@
+transformers>=4.38.0
+datasets>=2.18.0
+evaluate>=0.4.1
+accelerate>=0.26.0
+torch
+numpy
+tqdm

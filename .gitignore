@@ -1,13 +1,11 @@
-# Python
-__pycache__/
-*.pyc
+# Virtual environments
 .venv/
-venv/
+**/.venv/
 
-# Model outputs
+# Outputs
 outputs/
-runs/
+**/outputs/
 
-# OS
-.DS_Store
-Thumbs.db
+# Python cache
+__pycache__/
+**/__pycache__/
