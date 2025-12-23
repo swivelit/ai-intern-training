@@ -1,0 +1,5 @@
+Prompt: Machine learning enables
+
+Generated Text:
+Machine learning enables systems to automatically improve from experience,
+making it a core technology for intelligent applications.
