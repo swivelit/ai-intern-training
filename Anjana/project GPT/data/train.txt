@@ -1,0 +1,1 @@
+This is a sample training text. Replace with your own corpus.
