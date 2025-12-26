@@ -1,0 +1,50 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# =========================
+# Jupyter / IPython
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Hugging Face / Transformers
+# =========================
+model/
+model/*
+runs/
+wandb/
+che
+
+# Ignore all training data
+data/*
+!data/.gitkeep
+!data/README.md
+
+# Ignore all trained models
+model/*
+!model/.gitkeep
+!model/README.md
