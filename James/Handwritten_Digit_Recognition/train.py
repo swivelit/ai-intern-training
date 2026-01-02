@@ -2,6 +2,10 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import os
+import torch
+    
+
 from torchvision import datasets, transforms
 
 transform = transforms.Compose([
@@ -42,5 +46,7 @@ for epoch in range(5):
         loss.backward()
         optimizer.step()
     print(f"Epoch {epoch+1} completed")
-
+ 
+os.makedirs("models", exist_ok=True)
 torch.save(model.state_dict(), "models/mnist_cnn.pth")
+print("Model saved successfully!")
