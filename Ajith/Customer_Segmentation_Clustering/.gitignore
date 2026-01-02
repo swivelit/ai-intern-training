@@ -1,0 +1,37 @@
+# =========================
+# Python cache & temp files
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual environment
+# =========================
+.venv/
+venv/
+env/
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Jupyter Notebook checkpoints
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Data files (Kaggle dataset)
+# =========================
+data/Mall_Customers.csv
+
+
+# =========================
+# Logs
+# =========================
+*.log
