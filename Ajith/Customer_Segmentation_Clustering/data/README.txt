@@ -1,0 +1,1 @@
+Download Mall_Customers.csv from Kaggle and place it in this folder.
