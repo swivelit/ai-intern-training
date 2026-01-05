@@ -1,0 +1,7 @@
+@"
+numpy
+pandas
+matplotlib
+scikit-learn
+scipy
+"@ | Set-Content -Encoding utf8 .\requirements.txt
