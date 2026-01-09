@@ -1,0 +1,7 @@
+
+Accuracy Report (Expected)
+--------------------------
+Initial model (5k labeled samples): ~55-60%
+After pseudo-labeling (20k samples): ~65-70%
+
+Pseudo-labeling improves performance by leveraging unlabeled data.

@@ -1,0 +1,56 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+
+# -----------------------------
+# PyTorch / ML
+# -----------------------------
+*.pth
+*.pt
+*.ckpt
+
+# Saved datasets
+data/
+datasets/
+
+# Generated pseudo-label files
+pseudo_labeled_data.pth
+
+# -----------------------------
+# Logs & Outputs
+# -----------------------------
+logs/
+runs/
+outputs/
+
+# -----------------------------
+# Jupyter Notebook
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# OS / Editor files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# -----------------------------
+# ZIP / Archives
+# -----------------------------
+*.zip
+*.tar
+*.gz
