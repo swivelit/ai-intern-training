@@ -1,8 +1,0 @@
-.vscode/
-catboost_info/
-outputs/
-__pycache__/
-.env
-.venv/
-**/data/
-**/*.tar.gz
