@@ -4,3 +4,5 @@ outputs/
 __pycache__/
 .env
 .venv/
+**/data/
+**/*.tar.gz
