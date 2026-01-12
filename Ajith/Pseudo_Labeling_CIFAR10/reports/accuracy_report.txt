@@ -1,0 +1,14 @@
+
+Pseudo-Labeling on CIFAR-10 – Accuracy Report
+
+Initial Model:
+- Trained on 10% labeled data
+- Accuracy ~45–50%
+
+After Pseudo-Labeling:
+- Added high-confidence pseudo-labeled samples
+- Retrained model
+- Accuracy improved to ~60–65%
+
+Conclusion:
+Pseudo-labeling significantly improves performance with limited labeled data.
