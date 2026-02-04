@@ -1,0 +1,7 @@
+# Handwritten Digit Recognition - Dependencies
+# Compatible with Python 3.13+
+
+torch>=2.5.0
+torchvision>=0.20.0
+matplotlib>=3.9.0
+numpy>=2.0.0
