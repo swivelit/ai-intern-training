@@ -1,74 +1,121 @@
-# Handwritten Digit Recognition (Plain CNN)
+# 🔢 Handwritten Digit Recognition using CNN
 
-## Project Overview
-This project implements a Convolutional Neural Network (CNN) to recognize handwritten digits from the MNIST dataset. The goal is to build a basic CNN model that achieves an accuracy greater than 98%, with comprehensive visualizations of activations and filters to understand how the network learns.
+A CNN-based deep learning  for recognizing handwritten digits (0-9) from the MNIST dataset, achieving **>98% accuracy**.
 
-## Dataset
-**MNIST Dataset**: The Modified National Institute of Standards and Technology database contains 70,000 grayscale images of handwritten digits (0-9).
-- **Training Set**: 60,000 images
-- **Test Set**: 10,000 images
-- **Image Size**: 28x28 pixels
-- **Classes**: 10 (digits 0-9)
+---
 
-**Source**: Built-in dataset available in Keras/TensorFlow and PyTorch.
+## 📊 Dataset
 
-## Project Objectives
-1. Build a basic Convolutional Neural Network from scratch
-2. Achieve classification accuracy greater than 98%
-3. Visualize CNN activations/feature maps
-4. Visualize learned filters/kernels
-5. Provide comprehensive model evaluation metrics
+**MNIST (Modified National Institute of Standards and Technology)**
+- Training samples: 60,000 images
+- Test samples: 10,000 images  
+- Image size: 28×28 grayscale pixels
+- Classes: 10 digits (0-9)
 
-## CNN Architecture
-The model follows a classic CNN architecture:
-- **Convolutional Layers**: Extract spatial features from images
-- **Pooling Layers**: Reduce spatial dimensions
-- **Dropout Layers**: Prevent overfitting
-- **Fully Connected Layers**: Classification
-- **Output Layer**: 10 neurons with softmax activation
+---
 
-## Algorithms & Techniques
-1. **Convolutional Neural Network (CNN)**: Deep learning architecture for image classification
-2. **Data Augmentation**: Rotation, zoom, shift to improve generalization
-3. **Batch Normalization**: Stabilize training
-4. **Dropout**: Regularization technique
-5. **Adam Optimizer**: Adaptive learning rate optimization
+## 🔄 Process Steps
 
-## Visualizations
-The project includes:
-1. **Training History**: Loss and accuracy curves over epochs
-2. **Confusion Matrix**: Model performance across all digit classes
-3. **Sample Predictions**: Visual comparison of predictions vs ground truth
-4. **Filter Visualization**: Learned convolutional filters
-5. **Activation Maps**: Feature maps from different layers
+1. **Load Data** → Load and preprocess MNIST dataset
+2. **Build CNN** → Create 4-layer convolutional neural network
+3. **Train Model** → Train with Adam optimizer, batch normalization, and dropout
+4. **Evaluate** → Test accuracy and generate classification metrics
+5. **Visualize** → Create filter, activation, and prediction visualizations
+6. **Save Results** → Export model and all visualizations
 
-## Expected Results
-- **Accuracy**: >98% on test set
-- **Training Time**: ~5-10 minutes on CPU, ~1-2 minutes on GPU
-- **Model Size**: ~3-5 MB
+---
 
-## How to Run
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## ⚙️ Key Features
 
-2. Run the training script:
-   ```bash
-   python handwritten_digit_recognition.py
-   ```
+### CNN Architecture
+- **4 Convolutional Layers:** 32→32→64→64 filters with 3×3 kernels
+- **Batch Normalization:** Stable and faster training
+- **Dropout Regularization:** Prevents overfitting (25% and 50%)
+- **Max Pooling:** 2×2 pooling after each conv block
+- **Dense Layers:** 256→128→10 neurons
 
-3. View results in `Result_Visualizations/` folder
+### Training Configuration
+- Optimizer: Adam (lr=0.001)
+- Loss: Cross-Entropy
+- Batch Size: 128
+- Early Stopping: Patience=5 epochs
+- Learning Rate Scheduling: Reduce on plateau
+- Model Parameters: ~900K
 
-## Key Insights
-- Convolutional layers learn hierarchical features (edges → shapes → digits)
-- First layers detect simple patterns, later layers detect complex digit structures
-- Proper regularization (dropout, batch normalization) is crucial for >98% accuracy
-- Data augmentation helps prevent overfitting on training data
+---
 
-## Technologies Used
-- **TensorFlow/Keras**: Deep learning framework
-- **NumPy**: Numerical computations
-- **Matplotlib**: Visualization
-- **Seaborn**: Statistical visualizations
-- **Scikit-learn**: Evaluation metrics
+## 📈 Results
+
+| Metric | Value |
+|--------|-------|
+| **Test Accuracy** | **>98%** |
+| **Training Time** | ~10-15 min (CPU) |
+| **Model Size** | ~900K parameters |
+
+**Classification Metrics:** Precision, Recall, F1-Score for all 10 digit classes
+
+---
+
+## 🎨 Key Visualizations
+
+### 1. Sample Digits
+20 random MNIST samples with labels
+
+### 2. Training History
+- Accuracy curves (training & validation)
+- Loss curves (training & validation)
+
+### 3. Confusion Matrix
+10×10 heatmap showing prediction accuracy per digit
+
+### 4. Sample Predictions
+20 test predictions with confidence scores (✓ correct / ✗ incorrect)
+
+### 5. Convolutional Filters
+32 learned 3×3 filters from first conv layer
+
+### 6. Feature Map Activations
+Activation visualizations for all 4 conv layers showing learned features
+
+---
+
+## 🚀 How to Run
+
+### Install Dependencies
+```bash
+pip install torch torchvision numpy matplotlib seaborn scikit-learn
+```
+
+### Run Training
+```bash
+python handwritten_digit_recognition.py
+```
+
+---
+
+## 📂 Output Files
+
+```
+Results/
+├── Visualizations/
+│   ├── sample_digits.png
+│   ├── training_history.png
+│   ├── confusion_matrix.png
+│   ├── predictions.png
+│   ├── conv_filters.png
+│   └── activation_conv1-4.png
+├── Model/
+│   └── digit_recognition_model.pth
+└── classification_report.txt
+```
+
+---
+
+## 🛠️ Technologies
+
+- PyTorch & Torchvision
+- NumPy, Matplotlib, Seaborn
+- Scikit-learn
+
+
+
