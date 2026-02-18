@@ -1,0 +1,15 @@
+# Machine Learning models
+fine_tuned_model/
+*.safetensors
+*.bin
+*.pt
+
+# Datasets
+*.csv
+
+# Python environment
+__pycache__/
+*.pyc
+.env
+venv/
+.ipynb_checkpoints/
