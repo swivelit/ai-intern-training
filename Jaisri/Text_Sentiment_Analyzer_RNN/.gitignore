@@ -4,20 +4,13 @@ __pycache__/
 .Python
 venv/
 ENV/
-
-# Results
-Results/
-
 # Data
 .data/
-
 # Models
 *.pth
 *.pt
-
 # IDE
 .vscode/
 .idea/
-
-# OS
-.DS_Store
+# Results
+Results/

@@ -1,7 +1,4 @@
-"""
-Demo Script - Test Sentiment Analyzer
-Load trained models and predict sentiment of custom text
-"""
+
 
 import torch
 import torch.nn as nn
