@@ -1,0 +1,16 @@
+# Large Dataset Files
+data/
+*.tar.gz
+*.zip
+
+# Python Bytecode
+__pycache__/
+*.pyc
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Output/Temporary results
+results.txt
+checkpoint.pth
