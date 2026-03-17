@@ -10,13 +10,12 @@ def main():
         context = input("Enter the Context (or type 'exit' to quit): ")
         if context.lower() == 'exit':
             break
-            
         question = input("Enter your Question: ")
         
         print("\nAnalyzing...")
         answer, confidence = answer_question(context, question, qa_pipe)
         
-        print(f"\nModel's Answer: {answer}")
+        print(f"\nModel's Answer: {answer}") 
         print(f"Confidence Score: {confidence:.4f}")
 
 if __name__ == "__main__":
