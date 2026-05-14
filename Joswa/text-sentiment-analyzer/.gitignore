@@ -1,0 +1,45 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Model files
+*.pt
+*.pth
+*.h5
+
+# Dataset files
+aclImdb/
+*.tar.gz
+
+# Output folder
+output/
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Environment variables
+.env
