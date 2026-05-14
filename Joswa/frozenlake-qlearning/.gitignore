@@ -1,0 +1,39 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Output files
+outputs/
+*.npy
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db

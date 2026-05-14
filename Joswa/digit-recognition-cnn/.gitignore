@@ -1,0 +1,52 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# TensorFlow / Keras model files
+*.h5
+*.keras
+
+# Output files
+output/
+results/
+logs/
+
+# Images generated during training
+*.png
+*.jpg
+*.jpeg
+
+# Dataset files
+data/
+datasets/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Pip logs
+pip-log.txt
+pip-delete-this-directory.txt
